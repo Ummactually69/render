@@ -12,8 +12,9 @@ const DB   = path.join(__dirname, 'data.json');
 if (!fs.existsSync(DB)) fs.writeFileSync(DB, JSON.stringify([]));
 
 /* ── Middleware ── */
-app.use(cors());                        // Cho phép GitHub Pages gọi được
-app.use(express.json({ limit: '2mb' })); // Đủ lớn cho bộ câu hỏi
+app.use(cors());
+app.use(express.json({ limit: '2mb' }));
+app.use(express.static(__dirname));     // Serve index.html + dep.mp3 luôn từ đây
 
 /* ── Helpers ── */
 function readDB()      { return JSON.parse(fs.readFileSync(DB, 'utf8')); }
